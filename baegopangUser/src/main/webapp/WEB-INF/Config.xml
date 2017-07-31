@@ -4,9 +4,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration><!-- DB설정(Connection) -->
 	<typeAliases>
-		<typeAlias type="sist.spring.bean.AdminBean" alias="admin"/>
+		<typeAlias type="baegopang.user.bean.MemberBean" alias="member"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="sist/spring/dao/admin.xml" />
+		<mapper resource="baegopang/user/xml/member.xml" />
 	</mappers>
 </configuration>
