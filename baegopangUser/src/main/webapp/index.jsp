@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" "content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="/web/css/bootstrap.css" />
+<link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -16,7 +16,7 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-	display: flex;
+	display: flex;s
 	align-items: center;
 	justify-content: center;
 	display: -webkit-flex;
@@ -68,10 +68,10 @@
 		String fail = request.getParameter("fail");
 		String userId = request.getParameter("userId");
 	%>
-	<form action="/web/signInPro.do" method="post" name="log">
+	<form action="signInPro.do" method="post" name="log">
 		<div class="layer">
 		<div class = "maindiv">
-			<div class="content"><img src="/web/img/beagopangTitle.png"></div>
+			<div class="content"><img src="img/beagopangTitle.png"></div>
 			<div class="inputLog">
 				<%
 					if (userId != null) {

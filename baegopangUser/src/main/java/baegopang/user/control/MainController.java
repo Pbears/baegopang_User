@@ -17,8 +17,8 @@ public class MainController {
 	private MemberDao MemberDao;
 	
 	@RequestMapping(value = "signInPro.do")
-	public String signInAction(
-			Model model,
+	public String signInAction() {
+	/*		Model model,
 			@RequestBody String userId, String userPw) {
 		
 		MemberDao memberDao = new MemberDao();
@@ -41,7 +41,7 @@ public class MainController {
 			}else{
 				return "redirect:view/index.jsp?userId="+userId+"&fail=pw";
 			}
-		}
-		return "view/main/main";
+		}*/
+		return "redirect:view/main/main.jsp";
 	}
 }

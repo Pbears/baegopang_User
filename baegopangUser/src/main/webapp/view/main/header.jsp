@@ -1,12 +1,7 @@
-<%@page import="gopang.bean.BrandBean"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.List"%>
-<%@page import="gopang.bean.StoreBean"%>
-<%@page import="gopang.dao.StoreDao"%>
-<%@page import="gopang.bean.MemberBean"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
 <style>
 	html{
 		margin: 50px;
@@ -84,28 +79,10 @@
  }
 </script>
 <header>
-<%
-	request.setCharacterEncoding("UTF-8");
-	MemberBean bean = (MemberBean)session.getAttribute("member");
-	String MemberAddr = bean.getAddress();
-	String address = MemberAddr.substring(MemberAddr.indexOf("시")+2,MemberAddr.indexOf("구")+1);
-	
-	//회원주소와 동일한 구의 음식점list 가져오기
-	String data = request.getParameter("data");
-	//String searchAddress =request.getParameter("searchAddress");
-	if(data!=null){
-		HashMap<String, String> map = new HashMap<String,String>();
-		map.put("address",address);
-		map.put("data",data);
-		StoreDao dao = new StoreDao();
-		List<BrandBean> storeList = dao.selectSearchStore(map);
-		session.setAttribute("searchStoreList",storeList);
-	}
-%>
 		<div id="headerContainer">
 			<div id="mainTitle" align="center">
 				<a href="/Baegopang/jsp/main/index.jsp">
-					<img alt="" src="/Baegopang/img/beagopangTitle.png">
+					<img alt="" src="/img/beagopangTitle.png">
 				</a>
 			</div>
 			<form action="searchMain.jsp" name="searchFrm" method="post">
@@ -113,7 +90,7 @@
 					<table align="center">
 						<tr>
 							<td>
-								<input type="text" name="searchAddress" id="addressWindow" class="form-control" readonly="readonly" placeholder="<%=MemberAddr.substring(0,MemberAddr.indexOf("구")+1)%>">
+								<input type="text" name="searchAddress" id="addressWindow" class="form-control" readonly="readonly" placeholder="">
 							</td>
 							<td>
 								<input type="button" id="locationBtn" value="location" class="btn btn-default">
@@ -126,7 +103,7 @@
 							</td>
 							<td>
 								<div class="buttonDiv">
-								<label><%=bean.getName() %>님 반갑습니다.</label>
+								<label>님 반갑습니다.</label>
 								<button type="button" class="btn btn-default btn-lg" id="loginBtn" onclick="myPage()">
 								 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 								</button>
