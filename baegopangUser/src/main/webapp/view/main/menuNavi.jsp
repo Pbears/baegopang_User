@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%
+ <%
    	int brandNo = Integer.parseInt(request.getParameter("brandno"));
-%>
+%> 
 <style>
 	ul {
 	    list-style-type: none;

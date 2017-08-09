@@ -5,8 +5,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration><!-- DB설정(Connection) -->
 	<typeAliases>
 		<typeAlias type="baegopang.user.bean.MemberBean" alias="member"/>
+		<typeAlias type="baegopang.user.bean.ZipcodeBean" alias="zipcode"/>
+		<typeAlias type="baegopang.user.bean.BrandBean" alias="brand"/>
+		<typeAlias type="baegopang.user.bean.StoreBean" alias="store"/>
+		<typeAlias type="baegopang.user.bean.MenuBean" alias="menu"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="baegopang/user/xml/member.xml" />
+		<mapper resource="baegopang/user/xml/zipcode.xml" />
+		<mapper resource="baegopang/user/xml/total.xml" />
 	</mappers>
 </configuration>

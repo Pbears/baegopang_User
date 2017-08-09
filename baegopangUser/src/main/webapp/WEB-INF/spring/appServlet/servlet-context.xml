@@ -42,6 +42,12 @@
 	<beans:bean id="memberDao" class="baegopang.user.dao.MemberDao" scope="singleton">
 		<beans:property name="sqlSessionFactory" ref="ssf" />
 	</beans:bean>
+	<beans:bean id="zipCodeDao" class="baegopang.user.dao.ZipCodeDao" scope="singleton">
+		<beans:property name="sqlSessionFactory" ref="ssf" />
+	</beans:bean>
+	<beans:bean id="totalDao" class="baegopang.user.dao.TotalDao" scope="singleton">
+		<beans:property name="sqlSessionFactory" ref="ssf" />
+	</beans:bean>
 
 	<!-- SCAN -->
 	<context:component-scan base-package="baegopang.user.control" />

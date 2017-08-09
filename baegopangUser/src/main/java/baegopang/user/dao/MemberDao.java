@@ -20,15 +20,7 @@ public class MemberDao extends SqlSessionDaoSupport {
 	}
 	
 	public void memberInsert(MemberBean bean){
-		SqlSession session = this.getSqlSession();
-		try {
-			session.insert("memberInsert", bean);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			session.commit();
-			session.close();
-		}
+		this.getSqlSession().insert("memberInsert", bean);
 	}
 	
 	public MemberBean selectMember(String id) throws Exception{

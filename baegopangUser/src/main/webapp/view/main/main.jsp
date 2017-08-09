@@ -28,10 +28,9 @@
 </style>
 </head>
 <body>
-
 	<jsp:include page="header.jsp"/> 
 		<div id="menuContainer" align="center">
-			<a href="storeByBrandMain.jsp?brandno=100">
+			<a href="/storeByBrandMain.do?brandno=100">
 				<img src='/img/chicken.jpg' class="img-circle" onmouseover="this.src='/img/chickenChar.jpg'" onmouseout="this.src='/img/chicken.jpg'"/>
 			</a> &nbsp;
 			<a href="storeByBrandMain.jsp?brandno=200">
