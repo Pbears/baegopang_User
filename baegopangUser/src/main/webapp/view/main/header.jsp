@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/user/css/bootstrap.min.css" rel="stylesheet">
 <style>
 	html{
 		margin: 50px;
@@ -65,7 +65,7 @@
 <script>
  function myPage() {
 	
-	document.location.href='/Baegopang/jsp/main/myPageProcess.jsp';
+	document.location.href='/user/main/myPageProcess.jsp';
 }
  
  function searchMenu(){
@@ -81,8 +81,8 @@
 <header>
 		<div id="headerContainer">
 			<div id="mainTitle" align="center">
-				<a href="/view/main/main.jsp">
-					<img alt="" src="/img/beagopangTitle.png">
+				<a href="/user/view/main/main.jsp">
+					<img alt="" src="/user/img/beagopangTitle.png">
 				</a>
 			</div>
 			<form action="searchMain.jsp" name="searchFrm" method="post">
@@ -103,7 +103,7 @@
 							</td>
 							<td>
 								<div class="buttonDiv">
-								<label>님 반갑습니다.</label>
+								<label>${member.id }님 반갑습니다.</label>
 								<button type="button" class="btn btn-default btn-lg" id="loginBtn" onclick="myPage()">
 								 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 								</button>

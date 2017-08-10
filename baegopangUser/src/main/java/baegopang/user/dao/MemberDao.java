@@ -7,6 +7,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import baegopang.user.bean.MemberBean;
 
 public class MemberDao extends SqlSessionDaoSupport {
+	
 	private SqlSessionFactoryBean sqlSessionFactory;
 	
 	public boolean idCheck(String id){

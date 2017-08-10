@@ -5,14 +5,14 @@
 	pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("UTF-8");%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="/user/css/bootstrap.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -56,7 +56,7 @@ body {
 <script type="text/javascript">
 	function searchAd(){
 		var obj = document.addFrm.searchDong;
-		location.replace('/addressPage.do?dong='+obj.value);
+		location.replace('/user/addressPage.do?dong='+obj.value);
 	}
 	function checkDong(obj){
 		var ojt = document.getElementById(obj.id).childNodes[0].nodeValue;

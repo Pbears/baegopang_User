@@ -17,7 +17,7 @@ import baegopang.user.dao.ZipCodeDao;
 public class MainController {
 	
 	@Resource(name = "memberDao")
-	private MemberDao MemberDao;
+	private MemberDao memberDao;
 	@Resource(name = "zipCodeDao")
 	private ZipCodeDao zipCodeDao;
 	@Resource(name = "totalDao")
@@ -25,45 +25,31 @@ public class MainController {
 	
 	//로그인
 	@RequestMapping(value = "signInPro.do")
-	public String signInAction() {
-	/*		Model model,
-			@RequestBody String userId, String userPw) {
-		
-		MemberDao memberDao = new MemberDao();
-		
-		if (userId != null && userPw == null) {
-			if (memberDao.idCheck(userId)) {
-				return "view/index.jsp?userId=" + userId;
-			} else {
-				return "view/index.jsp?fail=id";
-			}
-		}else if(userId!=null&userPw!=null){
-			if(memberDao.pwCheck(userId ,userPw)){
-				try {
-					model.addAttribute("member", memberDao.selectMember(userId));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return "redirect:view/main/main.jsp";
+	public String signInAction(
+			Model model, @RequestParam String userId, String userPw) throws Exception {
+		if(userId != null && userPw != null){
+			if(memberDao.idCheck(userId)){
+				model.addAttribute("member", memberDao.selectMember(userId));
+				return "view/main/main";
 			}else{
-				return "redirect:view/index.jsp?userId="+userId+"&fail=pw";
+				return "redirect:index.jsp";
 			}
-		}*/
-		return "redirect:view/main/main.jsp";
+		}else{
+			return "redirect:index.jsp";
+		}
 	}
 	
 	//회원가입
 	@RequestMapping(value="signUp.do")
 	public String signUpAction(MemberBean memberBean){
-		MemberDao.memberInsert(memberBean);
+		memberDao.memberInsert(memberBean);
 		return "index";
 	}
 	
 	//회원가입 ID 중복확인
 	@RequestMapping(value="idCheck.do")
 	public String idCheckAction(@RequestParam(value="id")String id,Model model){
-		if(MemberDao.idCheck(id)){
+		if(memberDao.idCheck(id)){
 			model.addAttribute("checkId", "true");
 		}else{
 			model.addAttribute("checkId", "false");

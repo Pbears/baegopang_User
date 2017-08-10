@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/user/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
 
 	html{
@@ -30,32 +30,32 @@
 <body>
 	<jsp:include page="header.jsp"/> 
 		<div id="menuContainer" align="center">
-			<a href="/storeByBrandMain.do?brandno=100">
-				<img src='/img/chicken.jpg' class="img-circle" onmouseover="this.src='/img/chickenChar.jpg'" onmouseout="this.src='/img/chicken.jpg'"/>
+			<a href="/user/storeByBrandMain.do?brandno=100">
+				<img src="/user/img/chicken.jpg" class="img-circle" onmouseover="this.src='/user/img/chickenChar.jpg'" onmouseout="this.src='/user/img/chicken.jpg'"/>
 			</a> &nbsp;
 			<a href="storeByBrandMain.jsp?brandno=200">
-				<img src="/img/jajang.png" class="img-circle" onmouseover="this.src='/img/jajangChar.jpg'" onmouseout="this.src='/img/jajang.png'">
+				<img src="/user/img/jajang.png" class="img-circle" onmouseover="this.src='/user/img/jajangChar.jpg'" onmouseout="this.src='/user/img/jajang.png'">
 			</a> &nbsp;
 			<a href="storeByBrandMain.jsp?brandno=300">
-				<img src="/img/pizza.png" class="img-circle" onmouseover="this.src='/img/pizzaChar.jpg'" onmouseout="this.src='/img/pizza.png'"/>
+				<img src="/user/img/pizza.png" class="img-circle" onmouseover="this.src='/user/img/pizzaChar.jpg'" onmouseout="this.src='/user/img/pizza.png'"/>
 			</a><br>
 			<a href="storeByBrandMain.jsp?brandno=400">
-				<img src="/img/bibeam.png" class="img-circle" onmouseover="this.src='/img/bibeamChar.jpg'" onmouseout="this.src='/img/bibeam.png'">
+				<img src="/user/img/bibeam.png" class="img-circle" onmouseover="this.src='/user/img/bibeamChar.jpg'" onmouseout="this.src='/user/img/bibeam.png'">
 			</a>
 			<a href="storeByBrandMain.jsp?brandno=500">
-				<img src="/img/jock.jpg" class="img-circle" onmouseover="this.src='/img/jockChar.jpg'" onmouseout="this.src='/img/jock.jpg'">
+				<img src="/user/img/jock.jpg" class="img-circle" onmouseover="this.src='/user/img/jockChar.jpg'" onmouseout="this.src='/user/img/jock.jpg'">
 			</a> &nbsp;&nbsp;&nbsp;
 			<a href="storeByBrandMain.jsp?brandno=600">
-				<img src="/img/tang.jpg" class="img-circle" onmouseover="this.src='/img/tangChar.jpg'" onmouseout="this.src='/img/tang.jpg'">
+				<img src="/user/img/tang.jpg" class="img-circle" onmouseover="this.src='/user/img/tangChar.jpg'" onmouseout="this.src='/user/img/tang.jpg'">
 			</a><br>
 			<a href="storeByBrandMain.jsp?brandno=700">
-				<img src="/img/don.png" class="img-circle" onmouseover="this.src='/img/donChar.jpg'" onmouseout="this.src='/img/don.png'">
+				<img src="/user/img/don.png" class="img-circle" onmouseover="this.src='/user/img/donChar.jpg'" onmouseout="this.src='/user/img/don.png'">
 			</a >&nbsp;
 			<a href="storeByBrandMain.jsp?brandno=800">
-				<img src="/img/dosirak.jpg" class="img-circle" onmouseover="this.src='/img/dosirakChar.jpg'" onmouseout="this.src='/img/dosirak.jpg'">
+				<img src="/user/img/dosirak.jpg" class="img-circle" onmouseover="this.src='/user/img/dosirakChar.jpg'" onmouseout="this.src='/user/img/dosirak.jpg'">
 			</a> &nbsp;
 			<a href="storeByBrandMain.jsp?brandno=900">
-				<img src="/img/ham.png" class="img-circle" onmouseover="this.src='/img/hamChar.jpg'" onmouseout="this.src='/img/ham.png'">
+				<img src="/user/img/ham.png" class="img-circle" onmouseover="this.src='/user/img/hamChar.jpg'" onmouseout="this.src='/user/img/ham.png'">
 			</a>
 		</div>
 	<jsp:include page="footer.jsp"/>

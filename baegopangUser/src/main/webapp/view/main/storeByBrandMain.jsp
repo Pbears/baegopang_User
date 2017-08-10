@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
+<link href="/user/css/bootstrap.min.css" rel="stylesheet">
 <title>Insert title here</title>
 <script type="text/javascript">
 	function onCheck(obj) {
@@ -39,7 +39,7 @@
 </style>
 </head>
 <body>
-		
+
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="menuNavi.jsp"></jsp:include>
 
@@ -48,9 +48,9 @@
 			<span>
 			 <div class="row">
 			  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3" >
-			    <a href="/MenuByStore.do?brandno=${i.brandNo}&storeName=${i.storename}" style="text-decoration: none;"> 
+			    <a href="/user/MenuByStore.do?brandno=${i.brandNo}&storeName=${i.storename}" style="text-decoration: none;"> 
 			    <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
-		 	      <img src="${i.picture}" width="150px" height="100px"> 
+		 	      <img src="/user/${i.picture}" width="150px" height="100px"> 
 			      <div class="caption">
 			        <h3><strong>${i.storename}</strong></h3>
 			        <p>

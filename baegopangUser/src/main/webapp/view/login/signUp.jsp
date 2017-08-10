@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="/css/bootstrap.css" />
+<link rel="stylesheet" href="/user/css/bootstrap.css" />
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>회원가입</title>
@@ -67,7 +67,7 @@ body {
 		showOn : "both",
 		buttonImageOnly : true,
 		dateFormat: "yy-mm-dd",
-		buttonImage : "/img/calendar.png",
+		buttonImage : "/user/img/calendar.png",
 		buttonText : "Calendar"
 	});
 </script>
@@ -76,10 +76,10 @@ body {
 <body>
 	<div class="layer">
 	<div class="mainDiv">
-		<a href="/index.jsp"><img src="/img/beagopangTitle.png" style=" margin-left: 50px; width: 500px;"></a>
+		<a href="/user/index.jsp"><img src="/user/img/beagopangTitle.png" style=" margin-left: 50px; width: 500px;"></a>
 		<div class="inputLog" style="width: 500px;">
 			<div class="inner">
-				<form class="form-horizontal" method="post" action="/signUp.do" name="signupFrm">
+				<form class="form-horizontal" method="post" action="/user/signUp.do" name="signupFrm">
 					<div class="form-group">
 						<label for="inputId" class="col-sm-2 control-label">ID</label>
 						<div class="col-sm-10" id="divId">
@@ -166,14 +166,14 @@ body {
 	$( "input[type='radio']" ).checkboxradio();
 	
 	$("button[name='addressBtn']").click(function(){
-		window.open("/addressPage.do","address input" ,"width=500, height=500");
+		window.open("/user/addressPage.do","address input" ,"width=500, height=500");
 	});
 	
 	$("input#id").blur(function(){
 		if(!$("input#id").val()){
 			alert('id를 입력해주세요	');
 		}else{
-			window.open("/idCheck.do?id="+$(this).val()); 
+			window.open("/user/idCheck.do?id="+$(this).val()); 
 		}
 	});
 	
