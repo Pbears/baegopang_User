@@ -1,6 +1,9 @@
 package baegopang.user.control;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,8 +21,10 @@ import baegopang.user.bean.AddToCartBean;
 import baegopang.user.bean.FoodOrderBean;
 import baegopang.user.bean.MemberBean;
 import baegopang.user.bean.ReplyBean;
+import baegopang.user.bean.StoreBean;
 import baegopang.user.dao.MemberDao;
 import baegopang.user.dao.MyPageDao;
+import baegopang.user.dao.OrderDao;
 import baegopang.user.dao.TotalDao;
 import baegopang.user.dao.ZipCodeDao;
 
@@ -34,6 +39,8 @@ public class MainController {
 	private TotalDao totalDao;
 	@Resource(name="MyPageDao")
 	private MyPageDao myDao;
+	@Resource(name="orderDao")
+	private OrderDao orderDao;
 	
 	//로그인
 	@RequestMapping(value = "signInPro.do")
@@ -113,7 +120,7 @@ public class MainController {
 	
 	//메뉴별 음식점 출력
 	@RequestMapping(value="storeByBrandMain.do")
-	public String storeByBrandAction(@RequestParam(value="brandno")int brandNo,Model model){
+	public String storeByBrandAction(@RequestParam int brandNo,Model model){
 		try {
 			model.addAttribute("brand", totalDao.selectStoreByBrand(brandNo));
 		} catch (Exception e) {
@@ -125,11 +132,11 @@ public class MainController {
 	
 	//주문페이지에 음식점정보, 메뉴정보 출력
 	@RequestMapping(value="MenuByStore.do")
-	public String MenuByStoreAction(@RequestParam(value="brandno")int brandNo,@RequestParam(value="storeName") String storeName,Model model){
+	public String MenuByStoreAction(@RequestParam int brandNo,String storeName,HttpSession session){
 		try {
-			model.addAttribute("brandno", brandNo);
-			model.addAttribute("storeList", totalDao.selectStoreInfo(storeName));
-			model.addAttribute("menuList", totalDao.selectMenuByStore(storeName));
+			session.setAttribute("brandNo", brandNo);
+			session.setAttribute("storeList", totalDao.selectStoreInfo(storeName));
+			session.setAttribute("menuList", totalDao.selectMenuByStore(storeName));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -141,12 +148,12 @@ public class MainController {
 	@RequestMapping(value="payment.do")
 	 
 	public String paymentAction(Model model,  HttpSession session, 
-			@RequestParam String [] menuName, String [] count, String [] price ){
+			@RequestParam String [] menuName, String [] count, String [] price){
 		
 		MemberBean memberBean = (MemberBean)session.getAttribute("member");
 		ArrayList<AddToCartBean>cartList = new ArrayList<>();
 
-		int counting = 0;
+		int totalCount = 0;
 		int totalPrice = 0;
 		
 		for(int i=0 ; i < menuName.length ; i++){
@@ -158,7 +165,7 @@ public class MainController {
 		if(count != null){
 			for(int i=0; i<count.length; i++){
 				cntArr[i] = Integer.parseInt(count[i]);
-				counting+=cntArr[i];
+				totalCount+=cntArr[i];
 			}			
 		}
 		
@@ -182,8 +189,77 @@ public class MainController {
 		}
 		
 		session.setAttribute("cartList", cartList);
+		session.setAttribute("totalPrice", totalPrice);
+		session.setAttribute("totalCount", totalCount);
 	
 		return "view/payment/payment";
+	}
+	
+	//결제페이지 -> 주문완료 페이지 이동
+	@RequestMapping(value="final.do")
+	
+	public String finalAction(Model model,  HttpSession session, 
+			@RequestParam String tel, String address, String comment, String pangPrice){
+		
+		MemberBean memberBean =  (MemberBean)session.getAttribute("member");
+		List<StoreBean>storeList = (List<StoreBean>)session.getAttribute("storeList");
+		List<AddToCartBean>menuList = (List<AddToCartBean>)session.getAttribute("cartList") ;
+		
+		//pang포인트 업데이트 //미완성
+		HashMap<Object,Object> map = new HashMap<Object,Object>();
+		map.put("id", memberBean.getId());
+		if(pangPrice!=null){
+			int pang=Integer.parseInt(pangPrice);
+			//map.put("pang",memberBean.getPang()+100-pang);
+		}else{
+			//map.put("pang",memberBean.getPang()+100);
+		}
+		
+		FoodOrderBean foodOrderBean = new FoodOrderBean();
+		session.setAttribute("comment", comment);
+		long time = System.currentTimeMillis(); 
+
+		SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMddhhmmss");
+
+		String currentTime = dayTime.format(new Date(time));
+		
+		if(menuList.size() != 1){
+			for(int i = 0; i < menuList.size(); i++){
+				foodOrderBean.setOrdernumber(currentTime+memberBean.getId()+"-"+(i+1));
+				foodOrderBean.setMemberid(memberBean.getId());
+				foodOrderBean.setMembername(memberBean.getName());
+				foodOrderBean.setMembertel(tel);
+				foodOrderBean.setMemberaddress(address);
+				foodOrderBean.setPrice(menuList.get(i).getPrice());
+				foodOrderBean.setOrderinfo(comment);
+				foodOrderBean.setMenuname(menuList.get(i).getMenuName());
+				foodOrderBean.setAmount(menuList.get(i).getCnt());
+				foodOrderBean.setStorename(storeList.get(0).getStoreName());
+				foodOrderBean.setStoreaddress(storeList.get(0).getLocation());
+				foodOrderBean.setStoretel(storeList.get(0).getTel());
+				foodOrderBean.setOrdertime(currentTime);
+				System.out.println(foodOrderBean);
+				//orderDao.orderInsert(foodOrderBean);
+			}			
+		}else{
+				foodOrderBean.setOrdernumber(currentTime+memberBean.getId());
+				foodOrderBean.setMemberid(memberBean.getId());
+				foodOrderBean.setMembername(memberBean.getName());
+				foodOrderBean.setMembertel(tel);
+				foodOrderBean.setMemberaddress(address);
+				foodOrderBean.setPrice(menuList.get(0).getPrice());
+				foodOrderBean.setOrderinfo(comment);
+				foodOrderBean.setMenuname(menuList.get(0).getMenuName());
+				foodOrderBean.setAmount(menuList.get(0).getCnt());
+				foodOrderBean.setStorename(storeList.get(0).getStoreName());
+				foodOrderBean.setStoreaddress(storeList.get(0).getLocation());
+				foodOrderBean.setStoretel(storeList.get(0).getTel());
+				foodOrderBean.setOrdertime(currentTime);
+				//orderDao.orderInsert(foodOrderBean);
+				System.out.println(foodOrderBean);
+		}
+				//orderDao.updatePang(map);
+			return "view/payment/final";
 	}
 	
 	

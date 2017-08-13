@@ -48,7 +48,7 @@
 			<span>
 			 <div class="row">
 			  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3" >
-			    <a href="/user/MenuByStore.do?brandno=${i.brandNo}&storeName=${i.storename}" style="text-decoration: none;"> 
+			    <a href="/user/MenuByStore.do?brandNo=${i.brandNo}&storeName=${i.storename}" style="text-decoration: none;"> 
 			    <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
 		 	      <img src="/user/${i.picture}" width="150px" height="100px"> 
 			      <div class="caption">

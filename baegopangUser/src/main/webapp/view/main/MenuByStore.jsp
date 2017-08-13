@@ -321,8 +321,8 @@
         <div class="panel-body" id="panel-body-order">
         
         <form id="paymentInfomation" action="payment.do" method="get">
-           <label for="addMenu" id="menuLabel" ></label> 
-           <input type="hidden" name="brandno" value="${brandno }">
+           <label for="addMenu" id="menuLabel" name="menuLabel"></label> 
+           <input type="hidden" name="brandNo" value="${brandNo }">
          </form>
            
         </div>

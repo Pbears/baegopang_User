@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
+<link href="/user/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -94,7 +94,8 @@ textarea{
 <body>
 	<jsp:include page="../main/header.jsp" />
   	<jsp:include page="../main/menuNavi.jsp"/>
-  	${member }
+  	
+  	<form action="final.do" method="get">
 	<!-- 중앙 div 태그 -->
 	<div class="rowmainDiv">
 
@@ -163,7 +164,7 @@ textarea{
 					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputPassword3" class="col-sm-2 control-label">주문금액</label>
 						<div class="col-sm-10 orderPrice">
-							<label id="orderPrice"></label><label>원</label>
+							<label id="orderPrice">${totalPrice }</label><label>원</label>
 						</div>
 					</div>
 					
@@ -249,11 +250,11 @@ textarea{
 						<hr>
 						<label class="col-sm-4">수량</label>
 						<div class="col-sm-6 orderPrice">
-							<label id="totalAmount"></label><label>개</label>
+							<label id="totalAmount">${totalCount }</label><label>개</label>
 						</div>
 						<label class="col-sm-4">상품금액</label>
 						<div class="col-sm-6 orderPrice">
-							<label id="totalPrice"></label><label>원</label>
+							<label id="totalPrice">${totalPrice }</label><label>원</label>
 						</div>
 						<label class="col-sm-4">팡 결제</label>
 						<div class="col-sm-6 orderPrice redText">
@@ -265,7 +266,7 @@ textarea{
 						<div class="rightText">
 								<h6><label>최종결제금액</label></h6>
 								<div>
-									<h1><label id="realTotalPrice"></label><label>원</label></h1>
+									<h1><label id="realTotalPrice">${totalPrice }</label><label>원</label></h1>
 									<input type="hidden" id="finalPrice" name="realTotalPrice" value="">
 								</div>
 						</div>

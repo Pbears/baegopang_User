@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
  <%
-   	int brandNo = Integer.parseInt(request.getParameter("brandno"));
+   	int brandNo = Integer.parseInt(request.getParameter("brandNo"));
 %> 
 <style>
 	ul {
@@ -46,120 +46,120 @@
    		switch(brandNo/100){
    			case 1:
    	%>
-     			<li><a class="active" href="/user/storeByBrandMain.do?brandno=100">ġŲ</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=200">�߽�</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=300">����</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=400">�ѽ�</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=500">����, ����</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=600">��/��</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=700">�Ͻ�</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=800">���ö�</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=900">�н�ƮǪ��</a></li>
+     			<li><a class="active" href="/user/storeByBrandMain.do?brandNo=100">치킨</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=200">중식</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=300">피자</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=400">한식</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=500">족발, 보쌈</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=600">찜/탕</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=700">일식</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=800">도시락</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=900">패스트푸드</a></li>
     <%
     		break;
    			case 2:
    	%>
-   			    <li><a href="/user/storeByBrandMain.do?brandno=100">ġŲ</a></li>
-   	 		    <li><a class="active" href="/user/storeByBrandMain.do?brandno=200">�߽�</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=300">����</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=400">�ѽ�</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=500">����, ����</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=600">��/��</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=700">�Ͻ�</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=800">���ö�</a></li>
-			    <li><a href="/user/storeByBrandMain.do?brandno=900">�н�ƮǪ��</a></li>
+   			    <li><a href="/user/storeByBrandMain.do?brandNo=100">치킨</a></li>
+   	 		    <li><a class="active" href="/user/storeByBrandMain.do?brandNo=200">중식</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=300">피자</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=400">한식</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=500">족발, 보쌈</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=600">찜/탕</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=700">일식</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=800">도시락</a></li>
+			    <li><a href="/user/storeByBrandMain.do?brandNo=900">패스트푸드</a></li>
    	<%
    			break;
    			case 3:
    	%> 		
-	   			 <li><a href="/user/storeByBrandMain.do?brandno=100">ġŲ</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=200">�߽�</a></li>
-			     <li><a class="active" href="/user/storeByBrandMain.do?brandno=300">����</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=400">�ѽ�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=500">����, ����</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=600">��/��</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=700">�Ͻ�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=800">���ö�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=900">�н�ƮǪ��</a></li>
+	   			 <li><a href="/user/storeByBrandMain.do?brandNo=100">치킨</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=200">중식</a></li>
+			     <li><a class="active" href="/user/storeByBrandMain.do?brandNo=300">피자</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=400">한식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=500">족발, 보쌈</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=600">찜/탕</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=700">일식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=800">도시락</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=900">패스트푸드</a></li>
 	   	<%
   		 	break;
    			case 4:
    	%> 		
-	   			 <li><a href="/user/storeByBrandMain.do?brandno=100">ġŲ</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=200">�߽�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=300">����</a></li>
-			     <li><a class="active" href="/user/storeByBrandMain.do?brandno=400">�ѽ�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=500">����, ����</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=600">��/��</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=700">�Ͻ�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=800">���ö�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=900">�н�ƮǪ��</a></li>
+	   			 <li><a href="/user/storeByBrandMain.do?brandNo=100">치킨</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=200">중식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=300">피자</a></li>
+			     <li><a class="active" href="/user/storeByBrandMain.do?brandNo=400">한식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=500">족발, 보쌈</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=600">찜/탕</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=700">일식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=800">도시락</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=900">패스트푸드</a></li>
    	<%
    			break;
    			case 5:
    	%> 		
-	   			 <li><a href="/user/storeByBrandMain.do?brandno=100">ġŲ</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=200">�߽�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=300">����</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=400">�ѽ�</a></li>
-			     <li><a class="active" href="/user/storeByBrandMain.do?brandno=500">����, ����</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=600">��/��</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=700">�Ͻ�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=800">���ö�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=900">�н�ƮǪ��</a></li>
+	   			 <li><a href="/user/storeByBrandMain.do?brandNo=100">치킨</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=200">중식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=300">피자</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=400">한식</a></li>
+			     <li><a class="active" href="/user/storeByBrandMain.do?brandNo=500">족발, 보쌈</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=600">찜/탕</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=700">일식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=800">도시락</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=900">패스트푸드</a></li>
    	<%
    			break;
    			case 6:
    	%> 		
-	   			 <li><a href="/user/storeByBrandMain.do?brandno=100">ġŲ</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=200">�߽�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=300">����</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=400">�ѽ�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=500">����, ����</a></li>
-			     <li><a class="active" href="/user/storeByBrandMain.do?brandno=600">��/��</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=700">�Ͻ�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=800">���ö�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=900">�н�ƮǪ��</a></li>
+	   			 <li><a href="/user/storeByBrandMain.do?brandNo=100">치킨</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=200">중식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=300">피자</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=400">한식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=500">족발, 보쌈</a></li>
+			     <li><a class="active" href="/user/storeByBrandMain.do?brandNo=600">찜/탕</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=700">일식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=800">도시락</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=900">패스트푸드</a></li>
    	<%
   		 	break;
    			case 7:
    	%>
-	   			 <li><a href="/user/storeByBrandMain.do?brandno=100">ġŲ</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=200">�߽�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=300">����</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=400">�ѽ�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=500">����, ����</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=600">��/��</a></li>
-			     <li><a class="active" href="/user/storeByBrandMain.do?brandno=700">�Ͻ�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=800">���ö�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=900">�н�ƮǪ��</a></li>
+	   			 <li><a href="/user/storeByBrandMain.do?brandNo=100">치킨</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=200">중식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=300">피자</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=400">한식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=500">족발, 보쌈</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=600">찜/탕</a></li>
+			     <li><a class="active" href="/user/storeByBrandMain.do?brandNo=700">일식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=800">도시락</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=900">패스트푸드</a></li>
    	<%
    			break;
    			case 8:
    	%> 		
-	   	 		 <li><a href="/user/storeByBrandMain.do?brandno=100">ġŲ</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=200">�߽�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=300">����</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=400">�ѽ�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=500">����, ����</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=600">��/��</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=700">�Ͻ�</a></li>
-			     <li><a class="active" href="/user/storeByBrandMain.do?brandno=800">���ö�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=900">�н�ƮǪ��</a></li>
+	   	 		 <li><a href="/user/storeByBrandMain.do?brandNo=100">치킨</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=200">중식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=300">피자</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=400">한식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=500">족발, 보쌈</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=600">찜/탕</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=700">일식</a></li>
+			     <li><a class="active" href="/user/storeByBrandMain.do?brandNo=800">도시락</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=900">패스트푸드</a></li>
    	 		
    	<%
    			break;
    			default: 
    	%>			
-			     <li><a href="/user/storeByBrandMain.do?brandno=100">ġŲ</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=200">�߽�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=300">����</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=400">�ѽ�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=500">����, ����</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=600">��/��</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=700">�Ͻ�</a></li>
-			     <li><a href="/user/storeByBrandMain.do?brandno=800">���ö�</a></li>
-			     <li><a class="active" href="/user/storeByBrandMain.do?brandno=900">�н�ƮǪ��</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=100">치킨</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=200">중식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=300">피자</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=400">한식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=500">족발, 보쌈</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=600">찜/탕</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=700">일식</a></li>
+			     <li><a href="/user/storeByBrandMain.do?brandNo=800">도시락</a></li>
+			     <li><a class="active" href="/user/storeByBrandMain.do?brandNo=900">패스트푸드</a></li>
    	<% 
    		}
     %>

@@ -30,31 +30,31 @@
 <body>
 	<jsp:include page="header.jsp"/> 
 		<div id="menuContainer" align="center">
-			<a href="/user/storeByBrandMain.do?brandno=100">
+			<a href="/user/storeByBrandMain.do?brandNo=100">
 				<img src="/user/img/chicken.jpg" class="img-circle" onmouseover="this.src='/user/img/chickenChar.jpg'" onmouseout="this.src='/user/img/chicken.jpg'"/>
 			</a> &nbsp;
-			<a href="/user/storeByBrandMain.do?brandno=200">
+			<a href="/user/storeByBrandMain.do?brandNo=200">
 				<img src="/user/img/jajang.png" class="img-circle" onmouseover="this.src='/user/img/jajangChar.jpg'" onmouseout="this.src='/user/img/jajang.png'">
 			</a> &nbsp;
-			<a href="/user/storeByBrandMain.do?brandno=300">
+			<a href="/user/storeByBrandMain.do?brandNo=300">
 				<img src="/user/img/pizza.png" class="img-circle" onmouseover="this.src='/user/img/pizzaChar.jpg'" onmouseout="this.src='/user/img/pizza.png'"/>
 			</a><br>
-			<a href="/user/storeByBrandMain.do?brandno=400">
+			<a href="/user/storeByBrandMain.do?brandNo=400">
 				<img src="/user/img/bibeam.png" class="img-circle" onmouseover="this.src='/user/img/bibeamChar.jpg'" onmouseout="this.src='/user/img/bibeam.png'">
 			</a>
-			<a href="/user/storeByBrandMain.do?brandno=500">
+			<a href="/user/storeByBrandMain.do?brandNo=500">
 				<img src="/user/img/jock.jpg" class="img-circle" onmouseover="this.src='/user/img/jockChar.jpg'" onmouseout="this.src='/user/img/jock.jpg'">
 			</a> &nbsp;&nbsp;&nbsp;
-			<a href="/user/storeByBrandMain.do?brandno=600">
+			<a href="/user/storeByBrandMain.do?brandNo=600">
 				<img src="/user/img/tang.jpg" class="img-circle" onmouseover="this.src='/user/img/tangChar.jpg'" onmouseout="this.src='/user/img/tang.jpg'">
 			</a><br>
-			<a href="/user/storeByBrandMain.do?brandno=700">
+			<a href="/user/storeByBrandMain.do?brandNo=700">
 				<img src="/user/img/don.png" class="img-circle" onmouseover="this.src='/user/img/donChar.jpg'" onmouseout="this.src='/user/img/don.png'">
 			</a >&nbsp;
-			<a href="/user/storeByBrandMain.do?brandno=800">
+			<a href="/user/storeByBrandMain.do?brandNo=800">
 				<img src="/user/img/dosirak.jpg" class="img-circle" onmouseover="this.src='/user/img/dosirakChar.jpg'" onmouseout="this.src='/user/img/dosirak.jpg'">
 			</a> &nbsp;
-			<a href="/user/storeByBrandMain.do?brandno=900">
+			<a href="/user/storeByBrandMain.do?brandNo=900">
 				<img src="/user/img/ham.png" class="img-circle" onmouseover="this.src='/user/img/hamChar.jpg'" onmouseout="this.src='/user/img/ham.png'">
 			</a>
 		</div>
