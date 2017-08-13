@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
+<link href="/user/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript">
    function onCheck(obj) {
@@ -239,25 +239,6 @@
 </style>
 </head>
 <body>
-
-
-  <%-- <%
-      request.setCharacterEncoding("UTF-8");
-      int brandNo = Integer.parseInt(request.getParameter("brandno"));
-      
-      TotalDao totalDao = new TotalDao();
-      StoreDao storeDao = new StoreDao();
-      
-      String storeName = request.getParameter("storeName");
-      List<StoreBean>storeList=totalDao.selectStoreInfo(storeName);
-      session.setAttribute("storeList", storeList);
-      
-      
-      List<MenuBean>menuList=totalDao.selectChickenMenuByStore(storeName);
-      MemberBean memberBean = (MemberBean)session.getAttribute("member");
-      String id = memberBean.getId();
-   
-   %>  --%>
    
    <jsp:include page="../main/header.jsp"></jsp:include>
    <jsp:include page="../main/menuNavi.jsp"></jsp:include>
@@ -286,35 +267,36 @@
    </div>
    
    <span>
-   <div id="menuContiner" align="center" >
-   <span>
-      <c:forEach var="i" items="${menuList}">
-		   <div class="row" >
-		     <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
-		       <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
-		         <a href="#" id="innerA">
-		             <img src="${i.picture }"/> 
-		            <div class="caption">
-		              <h4><strong>${i.menuName }</strong></h4>
-		              <input id="menuName" type="hidden" value="${i.menuName }">
-		              <p class="menuInfo">
-		                 ${i.info }
-		              </p>
-		              
-		              <!--마우스오버할 때 메뉴info tooltip -->
-						<span class="tooltiptext">${i.info }</span>
-					  
-		              <h5 style="margin-top: 20px;"><strong>${i.price }원</strong></h5>
-		              <input id="menuPrice" type="hidden" value="${i.price }">
-		            </div>
-		         </a>
-		       </div>
-		     </div>
-		   </div>
-  		</c:forEach>
+	   <div id="menuContiner" align="center" >
+	   <span>
+	      <c:forEach var="i" items="${menuList}">
+			   <div class="row" >
+			     <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
+			       <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
+			         <a href="#" id="innerA">
+			             <img src="/user${i.picture }"/> 
+			            <div class="caption">
+			              <h4><strong>${i.menuName }</strong></h4>
+			              <input id="menuName" type="hidden" value="${i.menuName }">
+			              <p class="menuInfo">
+			                 ${i.info }
+			              </p>
+			              
+			              <!--마우스오버할 때 메뉴info tooltip -->
+							<span class="tooltiptext">${i.info }</span>
+						  
+			              <h5 style="margin-top: 20px;"><strong>${i.price }원</strong></h5>
+			              <input id="menuPrice" type="hidden" value="${i.price }">
+			            </div>
+			         </a>
+			       </div>
+			     </div>
+			   </div>
+	  		</c:forEach>
+	   </span>
+	   </div> 
    </span>
-   </div> 
-   </span>
+   
    <span>
       <div id="selectMenuContainer">
       <div class="panel panel-default">

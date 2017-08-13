@@ -1,9 +1,6 @@
-<%@page import="java.util.Stack"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,61 +92,9 @@ textarea{
 </style>
 </head>
 <body>
-
-payment
-<%-- 	<%
-	
-		request.setCharacterEncoding("UTF-8");
-		MemberBean memberBean = (MemberBean)session.getAttribute("member");
-		ArrayList<AddToCartBean>cartList = new ArrayList<>();
-		
-		
-		String [] menuName = request.getParameterValues("menuName");
-		String [] cnt = request.getParameterValues("count");
-		String [] price = request.getParameterValues("price");
-		
-		int count = 0;
-		int totalPrice = 0;
-		
-		for(int i=0 ; i < menuName.length ; i++){
-			System.out.println(menuName[i]);
-		}
-		
-		int [] cntArr = new int [cnt.length];
-		
-		if(cnt != null){
-			for(int i=0; i<cnt.length; i++){
-				cntArr[i] = Integer.parseInt(cnt[i]);
-				count+=cntArr[i];
-			}			
-		}
-		
-		int [] priceArr = new int [price.length];
-		
-		if(price != null){
-			for(int i=0; i<price.length; i++){
-				priceArr[i] = Integer.parseInt(price[i]);
-				totalPrice+=priceArr[i] ;
-			}
-			
-		}
-		
-		for(int i=0; i < menuName.length ; i++){
-			AddToCartBean addToCartBean = new AddToCartBean();
-			addToCartBean.setMenuName(menuName[i]);
-			addToCartBean.setCnt(cntArr[i]);
-			addToCartBean.setPrice(priceArr[i]);
-			cartList.add(addToCartBean);
-	
-		}
-		
-		session.setAttribute("cartList", cartList);
-	%>
-	<!-- 주석풀기 -->
-	<jsp:include page="../main/header.jsp"/>
-	  <jsp:include page="../main/menuNavi.jsp"></jsp:include>
-
-		<form action="final.jsp" method="post">
+	<jsp:include page="../main/header.jsp" />
+  	<jsp:include page="../main/menuNavi.jsp"/>
+  	${member }
 	<!-- 중앙 div 태그 -->
 	<div class="rowmainDiv">
 
@@ -176,7 +121,7 @@ payment
 					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputEmail3" class="col-sm-2 control-label">휴대전화</label>
 						<div class="col-sm-10">
-							<input type="tel" class="form-control" placeholder="전화번호" name="tel" value="<%=memberBean.getTel()%>">
+							<input type="tel" class="form-control" placeholder="전화번호" name="tel" value="${member.tel }">
 						</div>
 						<br>
 					</div>
@@ -185,7 +130,7 @@ payment
 					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputPassword3" class="col-sm-2 control-label">주소</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" placeholder="주소" name="address" value="<%=memberBean.getAddress()%>">
+							<input type="text" class="form-control" placeholder="주소" name="address" value="${member.address }">
 						</div>
 						<br>
 					</div>
@@ -218,7 +163,7 @@ payment
 					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputPassword3" class="col-sm-2 control-label">주문금액</label>
 						<div class="col-sm-10 orderPrice">
-							<label id="orderPrice"><%=totalPrice %></label><label>원</label>
+							<label id="orderPrice"></label><label>원</label>
 						</div>
 					</div>
 					
@@ -234,8 +179,8 @@ payment
 										<label>내 팡</label>
 									</div>
 									<div class="col-md-6">
-										<label id="pangAble"><%=memberBean.getPang() %></label><label>팡</label>
-										<input type="hidden" id="myPang" value="<%=memberBean.getPang()%>">
+										<label id="pangAble"></label><label>${member.pang }팡</label>
+										<input type="hidden" id="myPang" value="${member.pang }">
 									</div>
 									<div class="centerDiv"><label><h6>1000팡 이상 , 100팡 단위로 사용가능</h6></label></div>
 								</div>
@@ -280,21 +225,17 @@ payment
 					
 					<!-- 메뉴 추가 body div -->
 					<div class="form-group centerDiv rightDivs">
-					<%
-						for(AddToCartBean bean : cartList){
-					%>
+					   <c:forEach items="${cartList }" var="i">
 						<div class="row">
-							<label class="col-xs-4 col-md-4" style="width: 180px;"><%=bean.getMenuName() %></label>
+							<label class="col-xs-4 col-md-4" style="width: 180px;">${i.menuName }</label>
 							<div class="col-xs-4 col-md-4" style="width: 95px;">
-								<label id="eachPrice"><%=bean.getPrice() %>원</label>
+								<label id="eachPrice">${i.price }원</label>
 							</div>
 							<div class="col-xs-4 col-md-4" style="width: 60px;">
-								<label id="eachAmount"><%=bean.getCnt() %>개</label>
+								<label id="eachAmount">${i.cnt }개</label>
 							</div>
 						</div>
-						<%
-						}
-						%>
+					  </c:forEach>
 						<div>
 							<br><br>
 							<hr class="dashedHr">
@@ -308,11 +249,11 @@ payment
 						<hr>
 						<label class="col-sm-4">수량</label>
 						<div class="col-sm-6 orderPrice">
-							<label id="totalAmount"><%=count %></label><label>개</label>
+							<label id="totalAmount"></label><label>개</label>
 						</div>
 						<label class="col-sm-4">상품금액</label>
 						<div class="col-sm-6 orderPrice">
-							<label id="totalPrice"><%=totalPrice %></label><label>원</label>
+							<label id="totalPrice"></label><label>원</label>
 						</div>
 						<label class="col-sm-4">팡 결제</label>
 						<div class="col-sm-6 orderPrice redText">
@@ -324,8 +265,8 @@ payment
 						<div class="rightText">
 								<h6><label>최종결제금액</label></h6>
 								<div>
-									<h1><label id="realTotalPrice"><%=totalPrice %></label><label>원</label></h1>
-									<input type="hidden" id="finalPrice" name="realTotalPrice" value="<%=totalPrice %>">
+									<h1><label id="realTotalPrice"></label><label>원</label></h1>
+									<input type="hidden" id="finalPrice" name="realTotalPrice" value="">
 								</div>
 						</div>
 					</div>
@@ -338,10 +279,7 @@ payment
 		</div>
 	</div>
 	</form>
-	
 		
-
- --%>
 	<!-- footer -->
 	<jsp:include page="../main/footer.jsp" />
 </body>

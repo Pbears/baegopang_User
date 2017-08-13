@@ -9,6 +9,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="baegopang.user.bean.BrandBean" alias="brand"/>
 		<typeAlias type="baegopang.user.bean.StoreBean" alias="store"/>
 		<typeAlias type="baegopang.user.bean.MenuBean" alias="menu"/>
+		<typeAlias type="baegopang.user.bean.FoodOrderBean" alias="food"/>
+		<typeAlias type="baegopang.user.bean.ReplyBean" alias="reply"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="baegopang/user/xml/member.xml" />

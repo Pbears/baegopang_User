@@ -65,7 +65,7 @@
 <script>
  function myPage() {
 	
-	document.location.href='/user/main/myPageProcess.jsp';
+	document.location.href='/user/myPagePro.do';
 }
  
  function searchMenu(){

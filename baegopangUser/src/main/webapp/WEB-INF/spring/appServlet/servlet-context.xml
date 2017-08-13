@@ -48,6 +48,9 @@
 	<beans:bean id="totalDao" class="baegopang.user.dao.TotalDao" scope="singleton">
 		<beans:property name="sqlSessionFactory" ref="ssf" />
 	</beans:bean>
+	<beans:bean id="MyPageDao" class="baegopang.user.dao.MyPageDao" scope="singleton">
+		<beans:property name="sqlSessionFactory" ref="ssf" />
+	</beans:bean>
 
 	<!-- SCAN -->
 	<context:component-scan base-package="baegopang.user.control" />
