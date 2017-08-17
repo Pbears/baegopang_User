@@ -25,6 +25,7 @@ import baegopang.user.bean.StoreBean;
 import baegopang.user.dao.MemberDao;
 import baegopang.user.dao.MyPageDao;
 import baegopang.user.dao.OrderDao;
+import baegopang.user.dao.ReplyDao;
 import baegopang.user.dao.TotalDao;
 import baegopang.user.dao.ZipCodeDao;
 
@@ -41,8 +42,10 @@ public class MainController {
 	private MyPageDao myDao;
 	@Resource(name="orderDao")
 	private OrderDao orderDao;
+	@Resource(name="replyDao")
+	private ReplyDao replyDao;
 	
-	//·Î±×ÀÎ
+	//ï¿½Î±ï¿½ï¿½ï¿½
 	@RequestMapping(value = "signInPro.do")
 	public String signInAction(
 			HttpSession session, @RequestParam String userId, String userPw) throws Exception {
@@ -58,14 +61,14 @@ public class MainController {
 		}
 	}
 	
-	//È¸¿ø°¡ÀÔ
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="signUp.do")
 	public String signUpAction(MemberBean memberBean){
 		memberDao.memberInsert(memberBean);
 		return "index";
 	}
 	
-	//È¸¿ø°¡ÀÔ ID Áßº¹È®ÀÎ
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID ï¿½ßºï¿½È®ï¿½ï¿½
 	@RequestMapping(value="idCheck.do")
 	public String idCheckAction(@RequestParam(value="id")String id,Model model){
 		if(memberDao.idCheck(id)){
@@ -76,7 +79,7 @@ public class MainController {
 		return "view/login/idCheck";
 	}
 	
-	// È¸¿ø°¡ÀÔ ÁÖ¼Ò ¿ìÆí¹øÈ£ Ã£±â
+	// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È£ Ã£ï¿½ï¿½
 	@RequestMapping(value="addressPage.do")
 	public String addressAction(Model model,@RequestParam(value="dong",required=false)String dong){
 		if(dong!=null){
@@ -85,19 +88,19 @@ public class MainController {
 		return "view/login/addressPage";
 	}
 	
-	// ¸¶ÀÌ ÆäÀÌÁö ¹öÆ° Å¬¸¯½Ã 
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½ 
 	@RequestMapping(value="myPagePro.do")
 	public String myPageProAction(Model model, HttpSession session){
 		
 		MemberBean bean = (MemberBean) session.getAttribute("member");
 		String id = bean.getId();
-		//ÁÖ¹®³»¿ª
+		//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½
 		model.addAttribute("foodOrderList",myDao.selectMemberFoodOrder(id));
 		
-		//Æ÷ÀÎÆ®
+		//ï¿½ï¿½ï¿½ï¿½Æ®
 		model.addAttribute("pangList", myDao.selectMemberPoint(id));
 		
-		//¸®ºä°ü¸®
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		model.addAttribute("replyList", myDao.selectMemberReply(id));
 		
 		return "myPage.do?state=success";
@@ -118,7 +121,7 @@ public class MainController {
 		
 	}	
 	
-	//¸Þ´ºº° À½½ÄÁ¡ Ãâ·Â
+	//ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value="storeByBrandMain.do")
 	public String storeByBrandAction(@RequestParam int brandNo,Model model){
 		try {
@@ -130,9 +133,10 @@ public class MainController {
 		return "view/main/storeByBrandMain";
 	}
 	
-	//ÁÖ¹®ÆäÀÌÁö¿¡ À½½ÄÁ¡Á¤º¸, ¸Þ´ºÁ¤º¸ Ãâ·Â
+	//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value="MenuByStore.do")
-	public String MenuByStoreAction(@RequestParam int brandNo,String storeName,HttpSession session){
+	public String MenuByStoreAction(@RequestParam int brandNo,String storeName,
+			 String id, HttpSession session){
 		try {
 			session.setAttribute("brandNo", brandNo);
 			session.setAttribute("storeList", totalDao.selectStoreInfo(storeName));
@@ -141,10 +145,44 @@ public class MainController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		ReplyBean replyBean = new ReplyBean();
+		
+		List<ReplyBean>replyList = replyDao.selectReply(storeName);
+		session.setAttribute("replyList", replyList);
+		List<ReplyBean>replyCheckList = null;
+		
+		for(ReplyBean reply : replyList) {
+			if(reply.getReply() != 0){
+			try{
+				replyBean.setNo(replyDao.selectRepSeq());
+				replyBean.setStoreName(storeName);
+				replyBean.setOrderNumber("orderNumber");
+				replyBean.setId(id);
+				replyBean.setContents(reply.getContents());
+				
+				if(reply.equals("new")){
+					replyBean.setPnum(replyBean.getNo());
+					replyBean.setRef(replyBean.getNo());
+				} 
+				
+				else if(reply != null && reply.equals("reply")){
+					replyBean.setRef(reply.getRef());
+					replyBean.setPnum(reply.getPnum());
+				} 
+					
+				System.out.println(replyBean);
+				replyDao.insertReply(replyBean);
+				}catch (Exception e){
+					e.printStackTrace();
+				} 
+			}
+		}
+		
 		return "view/main/MenuByStore";
 	}
 	
-	//ÁÖ¹®ÆäÀÌÁö -> °áÁ¦ÆäÀÌÁö ÀÌµ¿
+	//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	@RequestMapping(value="payment.do")
 	 
 	public String paymentAction(Model model,  HttpSession session, 
@@ -195,7 +233,7 @@ public class MainController {
 		return "view/payment/payment";
 	}
 	
-	//°áÁ¦ÆäÀÌÁö -> ÁÖ¹®¿Ï·á ÆäÀÌÁö ÀÌµ¿
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -> ï¿½Ö¹ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	@RequestMapping(value="final.do")
 	
 	public String finalAction(Model model,  HttpSession session, 
@@ -205,7 +243,7 @@ public class MainController {
 		List<StoreBean>storeList = (List<StoreBean>)session.getAttribute("storeList");
 		List<AddToCartBean>menuList = (List<AddToCartBean>)session.getAttribute("cartList") ;
 		
-		//pangÆ÷ÀÎÆ® ¾÷µ¥ÀÌÆ® //¹Ì¿Ï¼º
+		//pangï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® //ï¿½Ì¿Ï¼ï¿½
 		HashMap<Object,Object> map = new HashMap<Object,Object>();
 		map.put("id", memberBean.getId());
 		if(pangPrice!=null){
@@ -261,6 +299,4 @@ public class MainController {
 				//orderDao.updatePang(map);
 			return "view/payment/final";
 	}
-	
-	
 }

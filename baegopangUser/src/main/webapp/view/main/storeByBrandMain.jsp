@@ -17,6 +17,9 @@
 	function outCheck(obj) {
 		obj.style.border='1px solid #ddd'
 	}
+	function menuSubmit(obj) {
+		obj.submit();
+	}
 </script>
 <style type="text/css">
 
@@ -48,27 +51,32 @@
 			<span>
 			 <div class="row">
 			  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3" >
-			    <a href="/user/MenuByStore.do?brandNo=${i.brandNo}&storeName=${i.storename}" style="text-decoration: none;"> 
-			    <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
-		 	      <img src="/user/${i.picture}" width="150px" height="100px"> 
-			      <div class="caption">
-			        <h3><strong>${i.storename}</strong></h3>
-			        <p>
-						<c:forEach begin="0" end="${i.gpa}" step="1" >
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-							<c:if test="j==${i.gpa}-1 && j <5">
-								<c:forEach begin="0" end="4-${j}" step="1">
-									<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-								</c:forEach>					
-							</c:if>
-						</c:forEach>
-			        	<br>${i.location}<br>
-			        	리뷰 : <strong>(50)</strong>   댓글 : <strong>(50)</strong>
-			        
-			        </p>
-			      </div>
-			    </div>
-			 </a> 
+			    <form id="menuFrm" action="/user/MenuByStore.do" method="get" onclick="menuSubmit(this)"> 
+				    <a href="#" style="text-decoration: none;">
+				    <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
+			 	      <img src="/user/${i.picture}" width="150px" height="100px"> 
+				      <div class="caption">
+				        <h3><strong>${i.storename}</strong></h3>
+					        <input type="hidden" name="brandNo" value="${i.brandNo}"/>
+					        <input type="hidden" name="storeName" value="${i.storename}"/>
+					        <input type="hidden" name="id" value="${member.id }"/>
+				        <p>
+							<c:forEach begin="0" end="${i.gpa}" step="1" >
+								<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								<c:if test="j==${i.gpa}-1 && j <5">
+									<c:forEach begin="0" end="4-${j}" step="1">
+										<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+									</c:forEach>					
+								</c:if>
+							</c:forEach>
+				        	<br>${i.location}<br>
+				        	리뷰 : <strong>(50)</strong>   댓글 : <strong>(50)</strong>
+				        
+				        </p>
+				      </div>
+				    </div>
+				 	</a> 
+			    </form>
 			  </div>
 			</div> 
 			</span>

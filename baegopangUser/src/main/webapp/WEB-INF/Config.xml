@@ -16,5 +16,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="baegopang/user/xml/member.xml" />
 		<mapper resource="baegopang/user/xml/zipcode.xml" />
 		<mapper resource="baegopang/user/xml/total.xml" />
+		<mapper resource="baegopang/user/xml/reply.xml" />
 	</mappers>
 </configuration>

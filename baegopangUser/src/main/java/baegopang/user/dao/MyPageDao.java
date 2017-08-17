@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import baegopang.user.bean.FoodOrderBean;
-import gopang.bean.ReplyBean;
+import baegopang.user.bean.ReplyBean;
 
 public class MyPageDao extends SqlSessionDaoSupport{
 	

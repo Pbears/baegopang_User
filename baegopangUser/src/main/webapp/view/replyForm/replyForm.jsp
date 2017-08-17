@@ -1,8 +1,6 @@
-<%@page import="java.util.List"%>
-<%@page import="java.net.URLDecoder"%>
-<%@page import="java.net.URLEncoder"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -103,46 +101,6 @@ $(document).ready(function() {
 </head>
 <body>
 
-<%-- 	<%
-		ReplyBean replyBean = new ReplyBean();
-		ReplyDao replyDao = new ReplyDao();
-		
-		int brandno = Integer.parseInt(request.getParameter("brandno"));
-		String storeName = request.getParameter("storeName");
-		String orderNumber = request.getParameter("orderNumber");
-		String id = request.getParameter("id");
-		String contents = request.getParameter("contents");
-		String reply = request.getParameter("reply");
-		
-		List<ReplyBean>replyList = replyDao.selectReply(storeName);
-		List<ReplyBean>replyCheckList = null;
-		
-		
-		if(reply != null){
-		try{
-			replyBean.setNo(replyDao.selectRepSeq());
-			replyBean.setStoreName(storeName);
-			replyBean.setOrderNumber(orderNumber);
-			replyBean.setId(id);
-			replyBean.setContents(contents);
-			
-			if(reply.equals("new")){
-				replyBean.setPnum(replyBean.getNo());
-				replyBean.setRef(replyBean.getNo());
-			} 
-			
-			else if(reply != null && reply.equals("reply")){
-				replyBean.setRef(Integer.parseInt(request.getParameter("ref")));
-				replyBean.setPnum(Integer.parseInt(request.getParameter("pnum")));
-			} 
-				
-			System.out.println(replyBean);
-			replyDao.insertReply(replyBean);
-			}catch (Exception e){
-				e.printStackTrace();
-			} 
-		}
-	%>
 	<br><br><br><br>
 	<div class="container">
 		<br>
@@ -150,8 +108,8 @@ $(document).ready(function() {
 	        <div class="form-group">
 			  <label for="comment">Comment:</label><br>
 	          <textarea id="contents" name="contents" class="form-control" rows="3" style="width: 836px;"></textarea>
-	          <input id="brandno" name="brandno" type="hidden" value="<%=brandno%>">
-	          <input id="storeName" name="storeName" type="hidden" value="<%=storeName%>">
+	          <input id="brandno" name="brandno" type="hidden" value="${param.brandNo }">
+	          <input id="storeName" name="storeName" type="hidden" value="${param.storeName }">
 	          <input id="reply" name="reply" type="hidden" value="new">
 	        <button id="new" name="new" type="button" class="btn btn-default">등록</button>
 	        </div>
@@ -168,9 +126,7 @@ $(document).ready(function() {
 	</div>
 	
 	<div id="replyContainer" >
-	<%
-		for(ReplyBean bean : replyList){
-	%>
+	<c:forEach items="${replyList }" var="i">
 	&nbsp;&nbsp;&nbsp;
 		<ul class="media-list" style="padding: 5px; width: 800px; height: 85px; margin-left: 180px; background-color: #f5f5f5;">
 		  <li class="media" style="background-color: ">
@@ -180,11 +136,12 @@ $(document).ready(function() {
 		      </a>
 		    </div>
 		    <div class="media-body">
-		      <h5 class="media-heading"><strong>ID : <%=bean.getId() %></strong> <small>님</small> | <%=bean.getRegDate() %></h5>
-				<%=bean.getContents()%>
+		      <h5 class="media-heading"><strong>ID : ${replyList.regDate }</strong> <small>님</small> | ${replyList.id }</h5>
+				${replyList.contents }
 		    </div>
 		  </li>
 		 </ul>
+		<%--  <c:choose test="${replyList.reply eq '1'}">
 		 <%
 		 	if(bean.getReply() ==1){
 		 		replyCheckList = replyDao.selectReplyCheck(bean.getPnum());
@@ -203,12 +160,8 @@ $(document).ready(function() {
 		    </div>
 		  </li>
 		</ul> 
-		
-	<%	
-		 	}
-		} 
-	 %>
+		</c:choose> --%>
+	 </c:forEach>
 	 </div> 
-	 --%>
 </body>
 </html>
