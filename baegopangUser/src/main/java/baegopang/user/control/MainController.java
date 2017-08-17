@@ -45,7 +45,7 @@ public class MainController {
 	@Resource(name="replyDao")
 	private ReplyDao replyDao;
 	
-	//ï¿½Î±ï¿½ï¿½ï¿½
+	//·Î±×ÀÎ
 	@RequestMapping(value = "signInPro.do")
 	public String signInAction(
 			HttpSession session, @RequestParam String userId, String userPw) throws Exception {
@@ -61,14 +61,14 @@ public class MainController {
 		}
 	}
 	
-	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//È¸¿ø°¡ÀÔ
 	@RequestMapping(value="signUp.do")
 	public String signUpAction(MemberBean memberBean){
 		memberDao.memberInsert(memberBean);
 		return "index";
 	}
 	
-	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID ï¿½ßºï¿½È®ï¿½ï¿½
+	//È¸¿ø°¡ÀÔ ID Áßº¹È®ÀÎ
 	@RequestMapping(value="idCheck.do")
 	public String idCheckAction(@RequestParam(value="id")String id,Model model){
 		if(memberDao.idCheck(id)){
@@ -79,7 +79,7 @@ public class MainController {
 		return "view/login/idCheck";
 	}
 	
-	// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È£ Ã£ï¿½ï¿½
+	// È¸¿ø°¡ÀÔ ÁÖ¼Ò ¿ìÆí¹øÈ£ Ã£±â
 	@RequestMapping(value="addressPage.do")
 	public String addressAction(Model model,@RequestParam(value="dong",required=false)String dong){
 		if(dong!=null){
@@ -88,19 +88,19 @@ public class MainController {
 		return "view/login/addressPage";
 	}
 	
-	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½ 
+	// ¸¶ÀÌ ÆäÀÌÁö ¹öÆ° Å¬¸¯½Ã  
 	@RequestMapping(value="myPagePro.do")
 	public String myPageProAction(Model model, HttpSession session){
 		
 		MemberBean bean = (MemberBean) session.getAttribute("member");
 		String id = bean.getId();
-		//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½
+		//ÁÖ¹®³»¿ª
 		model.addAttribute("foodOrderList",myDao.selectMemberFoodOrder(id));
 		
-		//ï¿½ï¿½ï¿½ï¿½Æ®
+		//Æ÷ÀÎÆ®
 		model.addAttribute("pangList", myDao.selectMemberPoint(id));
 		
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//¸®ºä°ü¸®
 		model.addAttribute("replyList", myDao.selectMemberReply(id));
 		
 		return "myPage.do?state=success";
@@ -121,7 +121,7 @@ public class MainController {
 		
 	}	
 	
-	//ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	//¸Þ´ºº° À½½ÄÁ¡ Ãâ·Â
 	@RequestMapping(value="storeByBrandMain.do")
 	public String storeByBrandAction(@RequestParam int brandNo,Model model){
 		try {
@@ -133,7 +133,7 @@ public class MainController {
 		return "view/main/storeByBrandMain";
 	}
 	
-	//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	//ÁÖ¹®ÆäÀÌÁö¿¡ À½½ÄÁ¡Á¤º¸, ¸Þ´ºÁ¤º¸ Ãâ·Â
 	@RequestMapping(value="MenuByStore.do")
 	public String MenuByStoreAction(@RequestParam int brandNo,String storeName,
 			 String id, HttpSession session){
@@ -151,8 +151,13 @@ public class MainController {
 		List<ReplyBean>replyList = replyDao.selectReply(storeName);
 		session.setAttribute("replyList", replyList);
 		List<ReplyBean>replyCheckList = null;
-		
 		for(ReplyBean reply : replyList) {
+			
+			if(reply.getReply() == 1){
+				replyCheckList = replyDao.selectReplyCheck(reply.getPnum());
+				session.setAttribute("replyCheckList", replyCheckList);
+			}
+					
 			if(reply.getReply() != 0){
 			try{
 				replyBean.setNo(replyDao.selectRepSeq());
@@ -182,7 +187,7 @@ public class MainController {
 		return "view/main/MenuByStore";
 	}
 	
-	//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+	//ÁÖ¹®ÆäÀÌÁö -> °áÁ¦ÆäÀÌÁö ÀÌµ¿
 	@RequestMapping(value="payment.do")
 	 
 	public String paymentAction(Model model,  HttpSession session, 
@@ -233,7 +238,7 @@ public class MainController {
 		return "view/payment/payment";
 	}
 	
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -> ï¿½Ö¹ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+	//°áÁ¦ÆäÀÌÁö -> ÁÖ¹®¿Ï·á ÆäÀÌÁö ÀÌµ¿
 	@RequestMapping(value="final.do")
 	
 	public String finalAction(Model model,  HttpSession session, 
@@ -243,7 +248,7 @@ public class MainController {
 		List<StoreBean>storeList = (List<StoreBean>)session.getAttribute("storeList");
 		List<AddToCartBean>menuList = (List<AddToCartBean>)session.getAttribute("cartList") ;
 		
-		//pangï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® //ï¿½Ì¿Ï¼ï¿½
+		//pangÆ÷ÀÎÆ® ¾÷µ¥ÀÌÆ® //¹Ì¿Ï¼º
 		HashMap<Object,Object> map = new HashMap<Object,Object>();
 		map.put("id", memberBean.getId());
 		if(pangPrice!=null){

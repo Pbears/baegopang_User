@@ -19,4 +19,8 @@ public class ReplyDao extends SqlSessionDaoSupport {
 	public List<ReplyBean> selectReply(String storeName){
 		return this.getSqlSession().selectList("selectReply", storeName);
 	}
+	
+	public List<ReplyBean> selectReplyCheck(int pnum){
+		return this.getSqlSession().selectList("selectReplyCheck", pnum);
+	}
 }
