@@ -59,13 +59,14 @@ $(document).ready(function() {
 	<br><br><br><br>
 	<div class="container">
 		<br>
-		  <form id="frmnew" action="" class="navbar-form navbar-left" role="search" method="post">
+		  <form id="frmnew" action="/user/replyInsert.do" class="navbar-form navbar-left" role="search" method="get">
 	        <div class="form-group">
 			  <label for="comment">Comment:</label><br>
 	          <textarea id="contents" name="contents" class="form-control" rows="3" style="width: 836px;"></textarea>
-	          <input id="brandno" name="brandno" type="hidden" value="${param.brandNo }">
-	          <input id="storeName" name="storeName" type="hidden" value="${param.storeName }">
+	          <input id="brandno" name="brandNo" type="hidden" value="${ brandNo}">
+	          <input id="storeName" name="storeName" type="hidden" value="${storeList[0].storeName }">
 	          <input id="reply" name="reply" type="hidden" value="new">
+	          <input id="id" name="id" type="hidden" value="${member.id }">
 	        <button id="new" name="new" type="button" class="btn btn-default">등록</button>
 	        </div>
 	        

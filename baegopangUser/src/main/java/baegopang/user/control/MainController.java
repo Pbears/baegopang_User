@@ -136,7 +136,7 @@ public class MainController {
 	//주문페이지에 음식점정보, 메뉴정보 출력
 	@RequestMapping(value="MenuByStore.do")
 	public String MenuByStoreAction(@RequestParam int brandNo,String storeName,
-			 String id, HttpSession session){
+			 String id, String reply,HttpSession session){
 		try {
 			session.setAttribute("brandNo", brandNo);
 			session.setAttribute("storeList", totalDao.selectStoreInfo(storeName));
@@ -146,46 +146,64 @@ public class MainController {
 			e.printStackTrace();
 		}
 		
+		List<ReplyBean>replyList = replyDao.selectReply(storeName);
+		List<ReplyBean>replyCheckList = null;
+		
+		session.setAttribute("replyList", replyList);
+		
+		for (ReplyBean replyCheck : replyList) {
+			if(replyCheck.getReply() ==1){
+				replyCheckList = replyDao.selectReplyCheck(replyCheck.getPnum());			
+				session.setAttribute("replyCheckList", replyCheckList);				
+			}
+		}
+		
+		return "view/main/MenuByStore";
+	}
+	
+	//리플 작성
+	@RequestMapping(value="replyInsert.do")
+	public String replyInsertAction(@RequestParam String storeName,
+			String id, String reply, String contents, HttpSession session){
+		
 		ReplyBean replyBean = new ReplyBean();
 		
-		List<ReplyBean>replyList = replyDao.selectReply(storeName);
-		session.setAttribute("replyList", replyList);
-		List<ReplyBean>replyCheckList = null;
-		for(ReplyBean reply : replyList) {
-			
-			if(reply.getReply() == 1){
-				replyCheckList = replyDao.selectReplyCheck(reply.getPnum());
-				session.setAttribute("replyCheckList", replyCheckList);
-			}
-					
-			if(reply.getReply() != 0){
+		if(reply != null){
 			try{
 				replyBean.setNo(replyDao.selectRepSeq());
 				replyBean.setStoreName(storeName);
 				replyBean.setOrderNumber("orderNumber");
 				replyBean.setId(id);
-				replyBean.setContents(reply.getContents());
+				replyBean.setContents(contents);
 				
 				if(reply.equals("new")){
 					replyBean.setPnum(replyBean.getNo());
 					replyBean.setRef(replyBean.getNo());
 				} 
 				
-				else if(reply != null && reply.equals("reply")){
-					replyBean.setRef(reply.getRef());
-					replyBean.setPnum(reply.getPnum());
-				} 
-					
 				System.out.println(replyBean);
-				replyDao.insertReply(replyBean);
+			
+				replyDao.insertReply(replyBean);					
 				}catch (Exception e){
 					e.printStackTrace();
 				} 
+		}
+		
+		List<ReplyBean>replyList = replyDao.selectReply(storeName);
+		List<ReplyBean>replyCheckList = null;
+		
+		session.setAttribute("replyList", replyList);
+		
+		for (ReplyBean replyCheck : replyList) {
+			if(replyCheck.getReply() ==1){
+				replyCheckList = replyDao.selectReplyCheck(replyCheck.getPnum());			
+				session.setAttribute("replyCheckList", replyCheckList);				
 			}
 		}
 		
 		return "view/main/MenuByStore";
 	}
+	
 	
 	//주문페이지 -> 결제페이지 이동
 	@RequestMapping(value="payment.do")

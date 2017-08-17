@@ -60,6 +60,7 @@
 					        <input type="hidden" name="brandNo" value="${i.brandNo}"/>
 					        <input type="hidden" name="storeName" value="${i.storename}"/>
 					        <input type="hidden" name="id" value="${member.id }"/>
+					        <input type="hidden" name="reply" value="null"/>
 				        <p>
 							<c:forEach begin="0" end="${i.gpa}" step="1" >
 								<span class="glyphicon glyphicon-star" aria-hidden="true"></span>

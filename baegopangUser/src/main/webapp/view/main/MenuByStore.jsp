@@ -344,12 +344,7 @@
     
     
    <!-- 댓글 미완성  -->
-   <jsp:include page="/view/replyForm/replyForm.jsp">
-       <jsp:param value="${ brandNo}" name="brandNo"/>
-       <jsp:param value="${storeList[0].storeName }" name="storeName"/>
-       <jsp:param value="orderNumber" name="orderNumber"/>
-       <jsp:param value="${member.id }" name="id"/>
-    </jsp:include>   
+   <jsp:include page="/view/replyForm/replyForm.jsp"></jsp:include>   
     
 </body>
 </html>
