@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gopang.xml.foodOrder"> 
+  	<select id="selectMemberFoodOrder" parameterType="java.lang.String" resultType="food">
+  		SELECT SUBSTR(ORDERTIME,1,8) ORDERTIME , ORDERNUMBER, STORENAME, PRICE, STATE FROM FOODORDER WHERE MEMBERID=#{id}
+  	</select>
+  	
+  	<select id="selectMemberPoint" parameterType="java.lang.String" resultType="food">
+  		SELECT SUBSTR(ORDERTIME,1,8) ORDERTIME , STORENAME, PANG,PRICE
+  		FROM FOODORDER F, MEMBER M WHERE F.MEMBERID = M.ID AND MEMBERID=#{id} AND STATE='배달완료'
+  	</select>
+  	
+  	<select id="selectMemberReply" parameterType="java.lang.String" resultType="reply">
+  		SELECT REGDATE, STORENAME,CONTENTS FROM REPLY WHERE ID=#{id}
+  	</select>
+  	
+</mapper>
+
+
+
+
+
