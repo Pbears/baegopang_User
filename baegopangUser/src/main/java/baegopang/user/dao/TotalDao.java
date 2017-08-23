@@ -1,5 +1,6 @@
 package baegopang.user.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -25,6 +26,12 @@ public class TotalDao extends SqlSessionDaoSupport{
 	public List<MenuBean> selectMenuByStore(String storeName){
 		return this.getSqlSession().selectList("selectMenuByStore", storeName);
 	}
+	
+	public List<BrandBean> selectSearchStore(HashMap<String, String> map){
+		return this.getSqlSession().selectList("selectSearchStore", map);
+	}
+	
+	
 	/*
 	public List<MenuBean> selectDefaultMenuByStore(String brandno){
 	      SqlSession sqlSession = null;

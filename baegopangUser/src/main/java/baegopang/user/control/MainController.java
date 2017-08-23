@@ -52,13 +52,19 @@ public class MainController {
 		if(userId != null && userPw != null){
 			if(memberDao.pwCheck(userId, userPw)){
 				session.setAttribute("member", memberDao.selectMember(userId));
-				return "view/main/main";
+				return "redirect:main.do";
 			}else{
 				return "redirect:index.jsp";
 			}
 		}else{
 			return "redirect:index.jsp";
 		}
+	}
+	
+	//메인페이지
+	@RequestMapping(value="main.do")
+	public String mainAction(){
+		return "view/main/main";
 	}
 	
 	//회원가입
@@ -91,35 +97,54 @@ public class MainController {
 	// 마이 페이지 버튼 클릭시  
 	@RequestMapping(value="myPagePro.do")
 	public String myPageProAction(Model model, HttpSession session){
-		
 		MemberBean bean = (MemberBean) session.getAttribute("member");
 		String id = bean.getId();
 		//주문내역
-		model.addAttribute("foodOrderList",myDao.selectMemberFoodOrder(id));
+		session.setAttribute("foodOrderList",myDao.selectMemberFoodOrder(id));
 		
 		//포인트
-		model.addAttribute("pangList", myDao.selectMemberPoint(id));
+		session.setAttribute("pangList", myDao.selectMemberPoint(id));
 		
 		//리뷰관리
-		model.addAttribute("replyList", myDao.selectMemberReply(id));
+		session.setAttribute("replyList", myDao.selectMemberReply(id));
 		
-		return "myPage.do?state=success";
+		return "redirect:myPage.do";
 	}	
 	
+	// 마이 페이지 이동
 	@RequestMapping(value="myPage.do")
 	public String myPageAction(Model model,  HttpSession session,@RequestParam(value="state", required=false)String state){
 		
 		MemberBean bean = (MemberBean) session.getAttribute("member");
-
-	 	List<FoodOrderBean> list = (List<FoodOrderBean>)session.getAttribute("foodOrderList"); 
-	 	List<FoodOrderBean> panglist = (List<FoodOrderBean>)session.getAttribute("pangList");
-	 	List<ReplyBean> replylist = (List<ReplyBean>)session.getAttribute("replyList");
 		String tel = bean.getTel();
 		String[] telArr = tel.split("-");
+		session.setAttribute("telArr", telArr);
 		
-		return "view/main/myPage?state="+state;
-		
+		return "view/main/myPage";
 	}	
+	
+	// 회원정보 수정
+	@RequestMapping(value="myPageModPro")
+	public String myPageMod(MemberBean memberbean,HttpSession session){
+		memberDao.updateMember(memberbean);
+		try {
+			session.setAttribute("member", memberDao.selectMember(memberbean.getId()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		return "redirect:main.do";
+	}
+	
+	// 검색
+	@RequestMapping(value="searchMain.do")
+	public String searchAction(HttpSession session,@RequestParam(value="searchAddress") String searchAddress,@RequestParam(value="searchData") String searchData){
+		HashMap<String, String> map = new HashMap<String,String>();
+		map.put("address",searchAddress);
+		map.put("data",searchData);
+		session.setAttribute("searchStoreList",totalDao.selectSearchStore(map));
+		return "view/main/searchMain";
+	}
 	
 	//메뉴별 음식점 출력
 	@RequestMapping(value="storeByBrandMain.do")

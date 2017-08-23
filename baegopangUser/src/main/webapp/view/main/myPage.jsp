@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -188,26 +189,26 @@ th {
 	}
 	$(function(){
 	  $("a#info").click(function(){
-		  ajaxProcess('/Baegopang/jsp/main/myPage.jsp','POST','html','inputLog');
+		  ajaxProcess('myPagePro.do','POST','html','inputLog');
 	  });
 	  $("a#order").click(function(){
-		  ajaxProcess('/Baegopang/jsp/main/myPage.jsp','POST','html','orderLog');
+		  ajaxProcess('myPagePro.do','POST','html','orderLog');
 	  });
 	  $("a#point").click(function(){
-		  ajaxProcess('/Baegopang/jsp/main/myPage.jsp','POST','html','pointLog');
+		  ajaxProcess('myPagePro.do','POST','html','pointLog');
 	  });
 	  $("a#review").click(function(){
-		  ajaxProcess('/Baegopang/jsp/main/myPage.jsp','POST','html','reviewLog');
+		  ajaxProcess('myPagePro.do','POST','html','reviewLog');
 	  }); 
 	});
 	
 </script>
 </head>
 <body onload="checkGender()">
-	<input type="hidden" id="stateM" value="${param.state }"/>
+	<input type="hidden" id="stateM" />
 	<div class="layer">
 	<div class="mainDiv">
-		<a href="/Baegopang/jsp/main/index.jsp"><img src="/user/img/beagopangTitle.png" style=" margin-left: 50px; width: 500px;"></a>
+		<a href="main.do"><img src="/user/img/beagopangTitle.png" style=" margin-left: 50px; width: 500px;"></a>
 		<ul>
 		  <li><a href="#" id="info" class="active">내정보</a></li>
 		  <li><a href="#" id="order">주문내역</a></li>
@@ -215,7 +216,7 @@ th {
 		  <li><a href="#" id="review">리뷰관리</a></li>
 		</ul>
 		<!--내정보  -->
-		<%-- <div class="inputLog" id="inputLog" style="width: 500px;">
+		 <div class="inputLog" id="inputLog" style="width: 500px;">
 			<div class="inner">
 				<form class="form-horizontal" method="post" action="/user/myPageModPro.do" name="modifyFrm">
 					<div class="form-group">
@@ -249,11 +250,12 @@ th {
 					<div class="form-group">
 						<label for="inputAddress" class="col-sm-2 control-label">Address</label>
 						<div class="col-sm-10" id="divAddress">
-							<button type="button" class="btn btn-default" style="width: 100%" id="address" name="address">
+							<button type="button" class="btn btn-default" style="width: 100%" id="addressBtn" name="addressBtn">
 								<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 							</button>
 							<input type="text" class="form-control" id="address1" name="address1" value="${member.address }" >
 							<input type="text" class="form-control" id="address2" name="address2" placeholder="Detail Address">
+							<input type="hidden" id="address" name="address">
 							<label id="labelAddress"></label>
 						</div>
 					</div>
@@ -262,8 +264,10 @@ th {
 						<div class="col-sm-10">
 							<div class="controls controls-row" id="divTel">
 								<input style="width: 30%;" type="text" id="tel1" name="tel1" value="010" readonly>
-								- <input style="width: 30%;" type="text" id="tel2" name="tel2" value="<%=telArr[1]%>">
-								- <input style="width: 30%;" type="text" id="tel3" name="tel3" value="<%=telArr[2]%>">
+								- <input style="width: 30%;" type="text" id="tel2" name="tel2" value="${telArr[1]}">
+								- <input style="width: 30%;" type="text" id="tel3" name="tel3" value="${telArr[2]}">
+								<label id="labelTel"></label>
+								<input type="hidden" id="tel" name="tel">
 							</div>
 						</div>
 					</div>
@@ -271,30 +275,33 @@ th {
 						<label for="inputGender" class="col-sm-2 control-label">Gender</label>
 						<div class="col-sm-10" id="divGender">
 							<label class="radio-inline"> 
-								<input type="radio" name="gender" id="gendermale" value="male" checked="" disabled="disabled"> 남
+								<input type="radio"id="gendermale" value="남" checked="" disabled="disabled"> 남
 							</label> 
 							<label class="radio-inline"> 
-								<input type="radio" name="gender" id="genderfemale" value="female" checked="" disabled="disabled" > 여
-								<input type="hidden" name="genderCheck" id="genderCheck" value="<%=bean.getGender()%>">
+								<input type="radio" id="genderfemale" value="여" checked="" disabled="disabled" > 여
+								<input type="hidden" name="gender" id="gender" value="${member.gender }">
+								<input type="hidden" name="genderCheck" id="genderCheck" value="${member.gender }">
 							</label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputBirth" class="col-sm-2 control-label">Birth</label>
 						<div class="col-sm-10" id="divBirth">
-								<input id="datepicker" class="form-control" name="birth" value="<%=bean.getBirth()%>" disabled="disabled">
+								<input id="datepicker" class="form-control" name="birth" value="${member.birth }" readonly="readonly">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<input type="submit" class="btn btn-success" value="Modify">
+							<input type="submit" class="btn btn-success" id="submitBtn" value="Modify">
 						</div>
 					</div>
 				</form>
 			</div>
-		</div> --%>
-				<!--주문내역  -->
-			<%-- <div class="orderLog" id="orderLog" style="width: 500px; height:653px; display: none;" >
+		</div> 
+		
+		
+		<!--주문내역  -->
+			 <div class="orderLog" id="orderLog" style="width: 500px; height:653px; display: none;" >
 			<div class="overflowDiv">
 			 	<table>
 				
@@ -305,25 +312,22 @@ th {
 					    <th>주문금액</th>
 					    <th>진행상태</th>
 					  </tr>
-					 <%
-						for(int i =0;i<list.size();i++){
-							FoodOrderBean foodOrderBean = list.get(i);
-					%>
-					  <tr>
-					    <td><%=foodOrderBean.getOrdertime()%></td>
-					    <td><%=foodOrderBean.getOrdernumber() %></td>
-					    <td><%=foodOrderBean.getStorename() %></td>
-					    <td><%=foodOrderBean.getPrice()%></td>
-					    <td><%=foodOrderBean.getState() %></td>
-					  </tr>
-				<%
-					}
-				%>
+					<c:forEach var="i" items="${foodOrderList}" >
+					   <tr>
+					    <td>${i.ordertime }</td>
+					    <td>${i.ordernumber }</td>
+					    <td>${i.storename}</td>
+					    <td>${i.price }</td>
+					    <td>${i.state }</td>
+					  </tr> 
+					</c:forEach>
 				</table>
 				</div>
-			</div> --%>
-			<!--포인트  -->
-			<%-- <div class="pointLog" id="pointLog" style="width: 500px; height:653px; display: none;" >
+			</div>
+			
+			
+		<!--포인트  -->
+			 <div class="pointLog" id="pointLog" style="width: 500px; height:653px; display: none;" >
 				<div class="overflowDiv">
 				<table>
 					  <tr>
@@ -332,34 +336,20 @@ th {
 					    <th>적립포인트</th>
 					    <th>누적포인트</th>
 					  </tr>
-					  <%
-					  for(int i=0;i<panglist.size();i++){
-						  FoodOrderBean pang = panglist.get(i);
-					  %>
-					  <tr>
-					    <td><%=pang.getOrdertime() %></td>
-					    <td><%=pang.getStorename()%></td>
-					    <td>100</td>
-					    <% 
-					    	if(i==panglist.size()-1){
-					    %>
-						    <td>100</td>
-					    <%
-					    	}else{
-					    %>
-					    	<td><%=(panglist.size()-i)*100%></td>
-					    <%
-					    	}
-					    %>
-					  </tr>
-					  <%
-					  }
-					  %>
+					  
+					  <c:forEach var="i" items="${pangList }">
+						  <tr>
+						    <td>${i.ordertime }</td>
+						    <td>${i.storename }</td>
+						    <td><fmt:parseNumber var="j" value="${i.price*0.1}" integerOnly="true"/>${j }</td>
+						 	<td>${pangList.size() }</td>
+						  </tr>
+					</c:forEach>
 				</table>
-				</div> --%>
-			</div>
+				</div> 
+			</div> 			
 			<!--리뷰관리  -->
-			<%-- <div class="reviewLog" id="reviewLog" style="width: 500px;  height: 653px; display: none;" >
+			 <div class="reviewLog" id="reviewLog" style="width: 500px;  height: 653px; display: none;" >
 				<div class="overflowDiv">
 					<table>
 						  <tr>
@@ -367,31 +357,26 @@ th {
 						    <th>음식점명</th>
 						    <th>리뷰내용</th>
 						  </tr>
-						  <%
-						   for(int i = 0;i<replylist.size();i++){
-							   ReplyBean replybean = replylist.get(i);
-						  %>
+						  <c:forEach var="i" items="${replyList}">
 						  <tr>
-						    <td><%=replybean.getRegDate() %></td>
-						    <td><%=replybean.getStoreName() %></td>
-						    <td><%=replybean.getContents() %></td>
+						    <td>${i.regDate }</td>
+						    <td>${i.storeName }</td>
+						    <td>${i.contents }</td>
 						  </tr>
-						  <%
-						  }					  
-						  %> 
+						  </c:forEach>
 					</table>
 				</div>
-			</div>
+			</div> 
 		</div>
-	</div> --%>
+	</div> 
 </body>
 <script>
 	$("#datepicker").datepicker();
 	
 	$( "input[type='radio']" ).checkboxradio();
 	
-	$("button[name='address']").click(function(){
-		window.open("/Baegopang/jsp/login/addressPage.jsp","address input" ,"width=500, height=500");
+	$("button[name='addressBtn']").click(function(){
+		window.open("/user/addressPage.do","address input" ,"width=500, height=500");
 	});
 	
 	$("input#pw").blur(function(){
@@ -416,6 +401,40 @@ th {
 			$("label#labelPwConfirm").text('비밀번호와 일치하지않습니다.');
 		}
 	});
-
+	$("input#address2").blur(function(){
+		if($("input#address2").val().trim().length==0 || !$("input#address2").val()){
+			$("div#divAddress").attr('class','col-sm-10 has-error');
+			$("input#address2").focus();
+			$("input#address2").val('');
+			$("label#labelAddress").text('상세주소를 기입하세요.');
+		}else{
+			$("div#divAddress").attr('class','col-sm-10 has-success');
+			$("input#address").val($("input#address1").val()+$("input#address2").val());
+			$("label#labelAddress").text('');
+		}
+	});
+	$("input#tel3").blur(function(){
+		if($("input#tel2").val().trim().length==0 || !$("input#tel2").val()||
+				$("input#tel3").val().trim().length==0 || !$("input#tel3").val()){
+			$("input#tel2").focus();
+			$("input#tel2").val('');
+			$("input#tel3").val('');
+			$("label#labelTel").text('전화번호를 제대로 기입하세요.');
+		}else{
+			$("input#tel").val($("input#tel1").val()+"-"+$("input#tel2").val()+"-"+$("input#tel3").val());
+			$("label#labelTel").text('');
+		}
+	});
+	
+	$("input#submitBtn").click(function(){
+		if($("input#id").val().length==0||$("input#pw").val().length==0||$("input#pwConfirm").val().length==0||
+				$("input#name").val().length==0||$("input#address1").val().length==0||$("input#address2").val().length==0||
+				$("input#tel1").val().length==0||$("input#tel2").val().length==0||$("input#tel3").val().length==0||
+				$("input#birth").val().length==0){
+			$("form[name='modifyFrm']").attr('action','');
+			alert('빈칸없이 모두 입력해주세요!');
+		}
+	});
+	
 </script>
 </html>

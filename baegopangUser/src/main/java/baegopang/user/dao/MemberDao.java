@@ -29,15 +29,7 @@ public class MemberDao extends SqlSessionDaoSupport {
 	}
 	
 	public void updateMember(MemberBean bean){
-		SqlSession session = this.getSqlSession();
-		try {
-			session.update("memberUpdate", bean);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			session.commit();
-			session.close();
-		}
+		this.getSqlSession().update("memberUpdate", bean);
 	}
 	
 }

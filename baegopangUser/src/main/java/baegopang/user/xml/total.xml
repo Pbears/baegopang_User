@@ -24,6 +24,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		FROM MENUBYSTORE
   		WHERE STORENAME = #{storename})
   	</select>
+  	<select id="selectSearchStore" parameterType="java.util.HashMap" resultType="brand">
+  	SELECT DISTINCT(B.BRANDNO), BRANDNAME,PICTURE, STORENAME, 
+  			LOCATION, GPA,HOURS, TEL,MINPRICE,INFO
+		FROM BRAND B
+        	FULL OUTER JOIN STORE S
+        	ON B.BRANDNO=S.BRANDNO
+		WHERE LOCATION LIKE '%'||#{address}||'%' AND
+		      STORENAME LIKE '%'||#{data}||'%'
+  </select>
   	
   	<!--<select id="selectDefaultMenuByStore" resultType="menu" parameterType="java.lang.Integer">
         SELECT MENUNAME, BRANDNO, PRICE, INFO, PICTURE
